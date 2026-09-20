@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#120F0D">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Webnest">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Webnest — Web sitesi tasarımı">
+<meta property="og:description" content="Siz hayal edin, biz yaratalım. Haber, kurumsal, tanıtım ve portföy siteleri size özel tasarlanır.">
+<meta property="og:url" content="https://webnest.vercel.app/">
+<meta property="og:image" content="https://webnest.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Webnest — Web sitesi tasarımı">
+<meta name="twitter:description" content="Siz hayal edin, biz yaratalım. Haber, kurumsal, tanıtım ve portföy siteleri size özel tasarlanır.">
+<meta name="twitter:image" content="https://webnest.vercel.app/og.png">
+<meta name="description" content="Webnest — haber, kurumsal, tanıtım ve portföy siteleri tasarlıyoruz.">
+<title>Webnest — Web sitesi tasarımı</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%23120F0D'/%3E%3Cellipse cx='20' cy='20' rx='7' ry='9.5' fill='%2386D3C8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#120F0D;
+  --bg-2:#1B1612;
+  --line:#2E261F;
+  --line-2:#463B30;
+  --ink:#F1EBE0;
+  --ink-2:#BDB2A2;
+  --ink-3:#8F8578;
+  --egg:#86D3C8;
+  --egg-ink:#0E1B18;
+  --twig:#D9A066;
+  --font-display:'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+*{box-sizing:border-box;}
+[hidden]{display:none !important;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:clip;}
+a{color:inherit;text-decoration:none;}
+button,input,select,textarea{font-family:inherit;}
+button{cursor:pointer;}
+:focus-visible{outline:2px solid var(--egg);outline-offset:3px;}
+/* Yatay boşluk yalnızca .wrap'ten gelir; diğer bileşenler sadece padding-block kullanır. */
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:20px;}
+
+/* ---------- Üst çubuk ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line);}
+.topbar-in{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px;}
+.brand{display:flex;align-items:center;gap:8px;}
+.brand-word{font-family:var(--font-display);font-weight:700;font-size:26px;letter-spacing:-0.02em;line-height:1;}
+.brand-word::after{content:"";display:inline-block;width:0.2em;height:0.28em;margin-left:0.07em;background:var(--egg);border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;}
+.nav{display:flex;gap:4px;}
+.nav a{padding:8px 10px;font-size:14px;font-weight:600;color:var(--ink-2);border-bottom:2px solid transparent;}
+.nav a:hover{color:var(--ink);}
+.nav a.active{color:var(--egg);border-bottom-color:var(--egg);}
+@media (min-width:721px){ .nav a{padding:8px 14px;font-size:15px;} .nav{gap:8px;} }
+
+/* ---------- Düğmeler ve bağlantılar ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 28px;border-radius:999px;font-weight:700;font-size:15px;border:1.5px solid transparent;text-align:center;}
+.btn-egg{background:var(--egg);color:var(--egg-ink);border-color:var(--egg);}
+.btn-cream{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+.btn:hover{filter:brightness(1.08);}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-row .btn{flex:1 1 150px;max-width:220px;}
+.tlink{color:var(--egg);font-weight:700;font-size:15px;border-bottom:1.5px solid var(--egg);padding-bottom:1px;}
+.tlink:hover{color:var(--ink);border-color:var(--ink);}
+
+/* ---------- Ana sayfa: giriş ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);}
+.hero-in{position:relative;z-index:1;padding-block:52px 60px;display:grid;gap:44px;}
+.hero-text{min-width:0;}
+.hero-shot{margin:0;min-width:0;}
+.hero-shot figcaption{margin-top:14px;font-size:14px;color:var(--ink-3);display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.browser{border:1px solid var(--line-2);border-radius:14px;overflow:hidden;background:var(--bg-2);}
+.browser-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid var(--line-2);}
+.browser-bar i{width:9px;height:9px;border-radius:50%;background:var(--line-2);flex-shrink:0;}
+.browser-bar span{margin-left:8px;font-size:12px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.browser .frame{border:0;border-radius:0;}
+svg.frame-fallback{width:100%;height:100%;display:block;}
+.hero h1{font-family:var(--font-display);font-weight:800;font-size:clamp(44px,7vw,80px);line-height:0.98;letter-spacing:-0.03em;margin:0 0 22px;max-width:16ch;text-wrap:balance;}
+.hero p.lede{font-size:clamp(16px,2.2vw,19px);color:var(--ink-2);max-width:46ch;margin:0 0 30px;}
+@media (min-width:961px){
+  .hero-in{grid-template-columns:1.05fr 1fr;align-items:center;gap:56px;padding-block:80px 88px;}
+}
+@keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.rise{opacity:0;animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards;}
+.rise.d1{animation-delay:.05s;} .rise.d2{animation-delay:.18s;} .rise.d3{animation-delay:.3s;}
+@media (prefers-reduced-motion: reduce){ .rise{opacity:1;animation:none;} }
+
+/* ---------- Bölümler ---------- */
+.section{padding-block:60px;border-bottom:1px solid var(--line);}
+.section h2{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,4.6vw,44px);line-height:1.08;letter-spacing:-0.02em;margin:0 0 10px;}
+.section .sub{color:var(--ink-2);margin:0 0 28px;max-width:52ch;}
+.page-head{padding-block:52px 12px;}
+.page-head h1{font-family:var(--font-display);font-weight:800;font-size:clamp(38px,7.5vw,72px);line-height:1;letter-spacing:-0.03em;margin:0 0 14px;}
+.page-head p{color:var(--ink-2);font-size:17px;max-width:52ch;margin:0;}
+
+/* ---------- İş önizlemesi ---------- */
+.work{display:grid;grid-template-columns:1.5fr 1fr;gap:28px 40px;align-items:center;}
+.work + .work{margin-top:56px;}
+.frame{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--line-2);border-radius:14px;background:var(--bg-2);}
+.frame-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:14px;}
+.frame iframe{position:absolute;left:0;top:0;width:1280px;height:800px;border:0;transform-origin:0 0;pointer-events:none;background:#fff;}
+.frame-link{position:absolute;inset:0;z-index:2;}
+.work-type{font-size:14px;color:var(--twig);font-weight:700;margin:0 0 6px;}
+.work h3{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,4.5vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0 0 12px;}
+.work p.desc{color:var(--ink-2);margin:0 0 20px;}
+.work-links{display:flex;gap:22px;flex-wrap:wrap;align-items:center;}
+@media (max-width:820px){ .work{grid-template-columns:1fr;} }
+.invite{margin-top:56px;padding-block:34px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.invite h3{font-family:var(--font-display);font-weight:700;font-size:26px;margin:0 0 4px;letter-spacing:-0.01em;}
+.invite p{margin:0;color:var(--ink-2);max-width:44ch;}
+
+/* ---------- Ne yapıyoruz ---------- */
+.kinds{list-style:none;margin:0;padding:0;}
+.kinds li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:8px 40px;padding-block:26px;border-top:1px solid var(--line);align-items:start;}
+.kinds li:last-child{border-bottom:1px solid var(--line);}
+.kinds strong{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,3vw,30px);letter-spacing:-0.01em;}
+.kinds span{color:var(--ink-2);line-height:1.65;}
+@media (max-width:720px){ .kinds li{grid-template-columns:1fr;} }
+
+/* ---------- Fiyat özeti (ana sayfa) ---------- */
+.price-lines{list-style:none;margin:0 0 26px;padding:0;}
+.price-lines li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-block:16px;border-top:1px solid var(--line);}
+.price-lines li:last-child{border-bottom:1px solid var(--line);}
+.price-lines .n{font-family:var(--font-display);font-weight:600;font-size:clamp(20px,2.8vw,26px);}
+.price-lines .p{color:var(--egg);font-weight:800;white-space:nowrap;}
+
+/* ---------- Fiyatlar sayfası ---------- */
+.tiers{margin-top:28px;}
+.tier{display:grid;grid-template-columns:1.1fr 1.2fr auto;gap:20px 36px;align-items:start;padding-block:32px;border-top:1px solid var(--line-2);}
+.tier:last-child{border-bottom:1px solid var(--line-2);}
+.tier h2{font-family:var(--font-display);font-weight:700;font-size:30px;line-height:1.1;letter-spacing:-0.01em;margin:0 0 8px;}
+.tier .desc{color:var(--ink-2);font-size:15px;margin:0;}
+.tier ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15px;}
+.tier li{display:flex;gap:10px;align-items:flex-start;}
+.tier li::before{content:"";flex:0 0 7px;height:7px;border-radius:50%;background:var(--egg);margin-top:8px;}
+.tier-price{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:190px;}
+.tier-price .from{font-size:13px;color:var(--ink-3);}
+.tier-price .amount{font-family:var(--font-display);font-weight:800;font-size:38px;line-height:1;letter-spacing:-0.02em;margin-bottom:14px;}
+@media (max-width:820px){
+  .tier{grid-template-columns:1fr;gap:18px;padding-block:28px;}
+  .tier-price{min-width:0;width:100%;}
+  .tier-price .btn{width:100%;}
+}
+.notes{padding-block:40px;display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.notes h3{font-family:var(--font-display);font-weight:700;font-size:22px;margin:0 0 12px;}
+.notes p,.notes li{color:var(--ink-2);font-size:15px;margin:0;}
+.notes ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;}
+@media (max-width:720px){ .notes{grid-template-columns:1fr;} }
+
+/* ---------- İletişim ---------- */
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;padding-block:32px 72px;align-items:start;}
+@media (max-width:820px){ .contact{grid-template-columns:1fr;gap:32px;} }
+.contact.solo{grid-template-columns:minmax(0,560px);}
+.field{margin-bottom:18px;}
+.field label{display:block;font-size:14px;font-weight:700;margin-bottom:8px;}
+.field input,.field select,.field textarea{width:100%;padding:14px 16px;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);border-radius:10px;font-size:16px;}
+.field textarea{min-height:140px;resize:vertical;line-height:1.5;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--egg);outline-offset:1px;border-color:var(--egg);}
+.contact-side h2{font-family:var(--font-display);font-weight:700;font-size:26px;margin:0 0 10px;}
+.contact-side p{color:var(--ink-2);margin:0 0 16px;}
+.contact-side .tlink{display:inline-block;margin-right:18px;margin-bottom:10px;}
+form .btn{width:100%;max-width:none;border:1.5px solid var(--egg);}
+
+.custom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:36px 56px;align-items:start;}
+.custom .sub{margin-bottom:24px;}
+.custom-list{list-style:none;margin:0;padding:0;}
+.custom-list li{padding-block:20px;border-top:1px solid var(--line-2);}
+.custom-list li:first-child{padding-top:0;border-top:0;}
+.custom-list strong{display:block;font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-0.01em;margin-bottom:6px;}
+.custom-list span{color:var(--ink-2);line-height:1.65;}
+@media (max-width:820px){ .custom{grid-template-columns:1fr;} }
+.prose{max-width:68ch;padding-block:24px 72px;}
+.prose h2{font-family:var(--font-display);font-weight:700;font-size:26px;line-height:1.15;letter-spacing:-0.01em;margin:38px 0 10px;}
+.prose p,.prose li{color:var(--ink-2);line-height:1.7;margin:0 0 12px;}
+.prose ul{margin:0 0 12px;padding-left:20px;}
+.prose li{margin-bottom:8px;}
+.prose strong{color:var(--ink);}
+.prose .note{font-size:13px;color:var(--ink-3);margin-top:34px;}
+.social-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.pill{display:inline-flex;align-items:center;padding:10px 22px;border-radius:999px;border:1.5px solid var(--egg);background:transparent;color:var(--egg);font-weight:700;font-size:15px;}
+.pill:hover{background:var(--egg);color:var(--egg-ink);}
+
+/* ---------- Kapanış çağrısı ---------- */
+.cta{padding-block:64px 72px;}
+.cta h2{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,6vw,56px);line-height:1.02;letter-spacing:-0.03em;margin:0 0 14px;max-width:16ch;text-wrap:balance;}
+.cta p{color:var(--ink-2);margin:0 0 26px;max-width:46ch;}
+
+/* ---------- Alt bilgi ---------- */
+footer{border-top:1px solid var(--line);background:var(--bg-2);}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-block:36px 30px;}
+.foot p{margin:10px 0 0;color:var(--ink-3);font-size:14px;max-width:34ch;}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;gap:22px;flex-wrap:wrap;align-self:flex-start;}
+.foot ul a{color:var(--ink-2);font-weight:600;font-size:15px;}
+.foot ul a:hover{color:var(--egg);}
+.copy{padding-block:0 28px;color:var(--ink-3);font-size:13px;}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s;z-index:200;max-width:calc(100% - 32px);text-align:center;}
+.toast.show{opacity:1;}
+@media (prefers-reduced-motion: reduce){ .toast{transition:none;} }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="/" data-link="/" aria-label="Webnest ana sayfa">
+      <span class="brand-word" id="brand-word">webnest</span>
+    </a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="/ornekler" data-link="/ornekler" data-route="ornekler">Örnekler</a>
+      <a href="/fiyatlar" data-link="/fiyatlar" data-route="fiyatlar">Fiyatlar</a>
+      <a href="/iletisim" data-link="/iletisim" data-route="iletisim">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <span class="brand-word">webnest</span>
+      <p>Haber, kurumsal, tanıtım ve portföy siteleri tasarlıyoruz.</p>
+    </div>
+    <ul id="foot-links">
+      <li><a href="/ornekler" data-link="/ornekler">Örnekler</a></li>
+      <li><a href="/fiyatlar" data-link="/fiyatlar">Fiyatlar</a></li>
+      <li><a href="/iletisim" data-link="/iletisim">İletişim</a></li>
+      <li><a href="/hakkimizda" data-link="/hakkimizda">Hakkımızda</a></li>
+      <li><a href="/haklar" data-link="/haklar">Kullanıcı hakları</a></li>
+    </ul>
+  </div>
+  <div class="wrap copy">© <span id="year"></span> Webnest. Tüm hakları saklıdır.</div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   BURAYI KENDİNE GÖRE DÜZENLE
+   ========================================================= */
+const CONFIG = {
+  whatsapp: '',   // örn. '905551112233' (ülke koduyla, başında + veya 0 olmadan)
+  email: '',      // örn. 'merhaba@webnest.com'
+  instagram: '',  // kullanıcı adı, örn. 'webnest'
+  x: 'webnestx'   // kullanıcı adı
+};
+
+// Fiyatlar başlangıç fiyatıdır (TL).
+const TIERS = [
+  {
+    name: 'Tek sayfa site',
+    desc: 'Bir ürünü, kişiyi ya da etkinliği tek sayfada anlatan tanıtım sitesi.',
+    price: 1500,
+    items: [
+      'Tek sayfalık özgün tasarım',
+      'Telefon, tablet ve bilgisayara uyumlu',
+      'İletişim bölümü ve sosyal medya bağlantıları',
+      '2 revizyon turu'
+    ]
+  },
+  {
+    name: 'Kurumsal site',
+    desc: 'Küçük bir işletmenin kendini anlattığı, birkaç sayfalık site.',
+    price: 5000,
+    items: [
+      '5 sayfaya kadar özgün tasarım',
+      'Ana sayfa, hizmetler, hakkımızda ve iletişim sayfaları',
+      'Telefon, tablet ve bilgisayara uyumlu',
+      'Logo ve renklerinize uygun tasarım dili',
+      'İletişim formu ve harita bölümü',
+      'Sosyal medya bağlantıları',
+      'Sayfa geçişleri ve hareketli detaylar',
+      'Yayına alma desteği',
+      '3 revizyon turu'
+    ]
+  },
+  {
+    name: 'Özel tasarım',
+    desc: 'Markanıza özel, sıfırdan çizilen arayüz. Haber, blog ya da portföy gibi içerik odaklı projeler için.',
+    price: 13000,
+    items: [
+      'Markanıza özel, sıfırdan çizilen tasarım dili',
+      'Sayfa sayısı kapsama göre belirlenir',
+      'Telefon, tablet ve bilgisayara uyumlu',
+      'Açık ve koyu tema seçeneği',
+      'Yazı tipi ve renk paleti seçimi',
+      'Hareketli geçişler ve özel animasyonlar',
+      'Kategori, arama ve yönetim paneli ekranı tasarımı',
+      'Canlı önizleme bağlantısıyla adım adım onay',
+      'Yayına alma desteği',
+      'Teslimden sonra 30 gün küçük düzeltme desteği',
+      '5 revizyon turu'
+    ]
+  }
+];
+
+// Önizleme yüklenmezse görünen yedek çizim (Meridyen için)
+const MERIDYEN_MOCK = '<svg class="frame-fallback" viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="160" height="100" fill="#15161A"/><rect x="8" y="6" width="34" height="7" rx="2" fill="#E7CDA9"/><rect x="132" y="7" width="8" height="5" rx="2" fill="#43454E"/><rect x="144" y="7" width="8" height="5" rx="2" fill="#43454E"/><g fill="#43454E"><rect x="8" y="17" width="14" height="3" rx="1.5"/><rect x="26" y="17" width="14" height="3" rx="1.5"/><rect x="44" y="17" width="12" height="3" rx="1.5"/><rect x="60" y="17" width="14" height="3" rx="1.5"/><rect x="78" y="17" width="16" height="3" rx="1.5"/><rect x="98" y="17" width="14" height="3" rx="1.5"/></g><rect y="24" width="160" height="7" fill="#AE2820"/><rect x="8" y="38" width="92" height="38" rx="2" fill="#B2413A"/><rect x="8" y="80" width="84" height="5" rx="2" fill="#ECEBE6"/><rect x="8" y="88" width="58" height="3" rx="1.5" fill="#797E88"/><rect x="108" y="38" width="16" height="16" rx="2" fill="#2E8A63"/><rect x="128" y="40" width="24" height="3" rx="1.5" fill="#ECEBE6"/><rect x="128" y="46" width="18" height="3" rx="1.5" fill="#797E88"/><rect x="108" y="58" width="16" height="16" rx="2" fill="#3E6FA6"/><rect x="128" y="60" width="24" height="3" rx="1.5" fill="#ECEBE6"/><rect x="128" y="66" width="18" height="3" rx="1.5" fill="#797E88"/><rect x="108" y="78" width="16" height="16" rx="2" fill="#C47A2E"/><rect x="128" y="80" width="24" height="3" rx="1.5" fill="#ECEBE6"/><rect x="128" y="86" width="18" height="3" rx="1.5" fill="#797E88"/></svg>';
+
+// Yeni bir örnek tasarım eklemek için buraya bir satır daha ekle.
+const WORKS = [
+  {
+    title: 'Meridyen',
+    type: 'Haber sitesi',
+    desc: 'Kategoriler, arama, açık ve koyu tema ile yönetim paneli ekranı olan bir haber sitesi arayüzü.',
+    url: 'https://meridyen-haber.vercel.app/',
+    mock: MERIDYEN_MOCK
+  }
+];
+
+const KINDS = [
+  ['Haber ve blog siteleri', 'Kategori sayfaları, arama, öne çıkan haber alanı ve son dakika bandı gibi bölümlerle okuması kolay haber ve blog arayüzleri tasarlıyoruz. Uzun yazılar telefonda da rahat okunur. Yazıları eklemek için yönetim paneli ekranlarını da tasarlıyoruz.'],
+  ['Kurumsal siteler', 'İşletmenizi, hizmetlerinizi ve ekibinizi anlatan ana sayfa, hizmetler, hakkımızda ve iletişim sayfalarını hazırlıyoruz. Logonuza ve renklerinize uygun, sade ve güven veren bir görünüm kurarız. Ziyaretçileriniz size kolayca ulaşır.'],
+  ['Tek sayfa tanıtımlar', 'Bir ürünü, etkinliği ya da kişiyi tek sayfada anlatan hızlı ve etkili siteler. Kısa bir hikâye, birkaç görsel ve net bir iletişim düğmesiyle ziyaretçiyi ilk ekranda ikna etmeyi hedefleriz. Lansman, davet ve kampanyalar için uygundur.'],
+  ['Portföy siteleri', 'Fotoğrafçı, tasarımcı, mimar ya da yazılımcı gibi kişilerin işlerini en iyi şekilde gösterdiği siteler. İşleriniz büyük görsellerle öne çıkar, proje sayfaları düzenli durur, iletişim bilgileriniz her zaman elinizin altındadır.'],
+  ['Ve diğerleri', 'Yukarıdakilere uymayan bir fikriniz mi var? Etkinlik, dernek, restoran, eğitim ya da başka bir alan olabilir. Ne yapmak istediğinizi anlatın, kapsamı birlikte netleştirip size özel bir teklif hazırlayalım.']
+];
+/* ========================================================= */
+
+const $ = id => document.getElementById(id);
+const ESC = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c=>ESC[c]);
+const fmtPrice = n => Number(n).toLocaleString('tr-TR') + ' TL';
+// Kullanıcı adı, @'li ya da tam bağlantı olarak yazılsa da çalışır
+const cleanHandle = s => String(s||'').trim().replace(/^@/,'').replace(/^https?:\/\/(www\.)?(instagram\.com|x\.com|twitter\.com)\//i,'').replace(/[\/?#].*$/,'');
+const igHandle = cleanHandle(CONFIG.instagram);
+const xHandle = cleanHandle(CONFIG.x);
+function socialPill(name, handle, base){
+  return handle
+    ? `<a class="pill" href="${base}${encodeURIComponent(handle)}" target="_blank" rel="noopener">${name}</a>`
+    : `<button class="pill" type="button" data-soon="${name}">${name}</button>`;
+}
+
+function toast(msg){
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=>t.classList.remove('show'), 3200);
+}
+
+/* ---------- Teklif isteği: WhatsApp ya da e-posta ---------- */
+function sendQuote(text){
+  const phone = String(CONFIG.whatsapp||'').replace(/\D/g,'');
+  if(phone){
+    window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  } else if(CONFIG.email){
+    location.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Teklif talebi') + '&body=' + encodeURIComponent(text);
+  } else {
+    toast('İletişim bilgisi henüz eklenmedi.');
+  }
+}
+
+/* ---------- İş önizlemesi (canlı site, küçültülmüş) ---------- */
+function frameHTML(w){
+  return `<div class="frame">
+    ${w.mock || '<div class="frame-fallback">Önizleme yükleniyor</div>'}
+    <iframe src="${esc(w.url)}" title="${esc(w.title)} önizleme" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+    <a class="frame-link" href="${esc(w.url)}" target="_blank" rel="noopener" aria-label="${esc(w.title)} sitesini yeni sekmede aç"></a>
+  </div>`;
+}
+const ro = window.ResizeObserver ? new ResizeObserver(es=>es.forEach(e=>scaleFrame(e.target))) : null;
+function scaleFrame(f){
+  const ifr = f.querySelector('iframe');
+  if(ifr && f.clientWidth) ifr.style.transform = 'scale(' + (f.clientWidth/1280) + ')';
+}
+function fitFrames(){
+  if(ro) ro.disconnect();
+  document.querySelectorAll('.frame').forEach(f=>{ scaleFrame(f); if(ro) ro.observe(f); });
+}
+window.addEventListener('resize', fitFrames);
+
+function workHTML(w){
+  return `<article class="work">
+    ${frameHTML(w)}
+    <div>
+      <p class="work-type">${esc(w.type)}</p>
+      <h3>${esc(w.title)}</h3>
+      <p class="desc">${esc(w.desc)}</p>
+      <div class="work-links">
+        <a class="tlink" href="${esc(w.url)}" target="_blank" rel="noopener">Siteyi gez</a>
+      </div>
+    </div>
+  </article>`;
+}
+
+/* ---------- Sayfalar ---------- */
+function pageHome(){
+  const featured = WORKS[0];
+  return `
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-text">
+        <h1 class="rise d1">Siz hayal edin, biz yaratalım.</h1>
+        <p class="lede rise d2">Profesyonel tasarımcılarımızla haber, kurumsal, tanıtım, portföy gibi istediğiniz tür siteyi özel olarak tasarlıyoruz. Her site telefondan da rahat bir şekilde kullanılabilir.</p>
+        <div class="btn-row rise d3">
+          <a class="btn btn-cream" href="/ornekler" data-link="/ornekler">Örnek tasarımlar</a>
+          <a class="btn btn-egg" href="/iletisim" data-link="/iletisim">Teklif al</a>
+        </div>
+      </div>
+      <figure class="hero-shot rise d3">
+        <div class="browser">
+          <div class="browser-bar"><i></i><i></i><i></i><span>${esc(featured.url.replace(/^https?:\/\//,'').replace(/\/$/,''))}</span></div>
+          ${frameHTML(featured)}
+        </div>
+        <figcaption><span>${esc(featured.title)}, örnek ${esc(featured.type.toLowerCase())}</span><a class="tlink" href="${esc(featured.url)}" target="_blank" rel="noopener">Siteyi gez</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Hangi siteleri yapıyoruz?</h2>
+      <p class="sub">Konu ne olursa olsun, önce ihtiyacı dinleriz, sonra tasarımı çizeriz.</p>
+      <ul class="kinds">
+        ${KINDS.map(k=>`<li><strong>${esc(k[0])}</strong><span>${esc(k[1])}</span></li>`).join('')}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap custom">
+      <div>
+        <h2>Özel tasarım</h2>
+        <p class="sub">Her site sıfırdan, sizin markanıza ve içeriğinize göre çizilir. Hazır bir kalıba sığdırmayız.</p>
+        <a class="btn btn-egg" href="/iletisim" data-link="/iletisim" data-paket="Özel tasarım">Özel tasarım için teklif al</a>
+      </div>
+      <ul class="custom-list">
+        <li><strong>Sıfırdan çizim</strong><span>Sayfa düzeni, renkler ve yazı tipleri yalnızca sizin site için seçilir.</span></li>
+        <li><strong>Markanıza uygun dil</strong><span>Logonuz, renkleriniz ve tonunuz sitenin her yerinde tutarlı görünür.</span></li>
+        <li><strong>Her ekranda rahat kullanım</strong><span>Telefon, tablet ve bilgisayarda aynı kalitede çalışır.</span></li>
+        <li><strong>Adım adım onay</strong><span>Canlı önizleme bağlantısıyla süreci izler, görüşünüzü baştan söylersiniz.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Fiyatlar</h2>
+      <p class="sub">Tutarlar başlangıç fiyatıdır. Kapsama göre net teklif veririz.</p>
+      <ul class="price-lines">
+        ${TIERS.map(t=>`<li><span class="n">${esc(t.name)}</span><span class="p">${fmtPrice(t.price)}'den başlar</span></li>`).join('')}
+      </ul>
+      <a class="tlink" href="/fiyatlar" data-link="/fiyatlar">Neler dahil, neler değil</a>
+    </div>
+  </section>
+
+  <section class="wrap cta">
+    <h2>Projenizi anlatın.</h2>
+    <p>Ne yapmak istediğinizi kısaca yazın, size kapsama uygun bir teklif hazırlayalım.</p>
+    <div class="btn-row"><a class="btn btn-egg" href="/iletisim" data-link="/iletisim">Teklif al</a></div>
+  </section>`;
+}
+
+function pageWorks(){
+  return `
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Örnek tasarımlar</h1>
+      <p>Şu an örnek tasarımlarımızı görüyorsunuz. Yeni tasarımlar eklendikçe bu liste uzayacak.</p>
+    </div>
+    <div style="padding-block:36px 0">
+      ${WORKS.map(workHTML).join('')}
+    </div>
+    <div class="invite">
+      <div>
+        <h3>Sıradaki tasarım sizin olabilir</h3>
+        <p>Ne tür bir siteye ihtiyacınız olduğunu anlatın.</p>
+      </div>
+      <a class="btn btn-egg" href="/iletisim" data-link="/iletisim">Teklif al</a>
+    </div>
+    <div style="height:64px"></div>
+  </div>`;
+}
+
+function pagePrices(){
+  return `
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Fiyatlar</h1>
+      <p>Her proje kapsamına göre ayrıca teklif edilir. Aşağıdaki tutarlar başlangıç fiyatlarıdır.</p>
+    </div>
+    <div class="tiers">
+      ${TIERS.map(t=>`
+      <article class="tier">
+        <div>
+          <h2>${esc(t.name)}</h2>
+          <p class="desc">${esc(t.desc)}</p>
+        </div>
+        <ul>${t.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+        <div class="tier-price">
+          <span class="from">Başlangıç fiyatı</span>
+          <span class="amount">${fmtPrice(t.price)}</span>
+          <a class="btn btn-egg" href="/iletisim" data-link="/iletisim" data-paket="${esc(t.name)}">Teklif al</a>
+        </div>
+      </article>`).join('')}
+    </div>
+    <div class="notes">
+      <div>
+        <h3>Fiyata dahil değil</h3>
+        <ul>
+          <li>Sunucu, veritabanı ve giriş sistemi (gerekirse ayrıca teklif edilir)</li>
+          <li>Alan adı ve barındırma (hosting) ücreti</li>
+          <li>İçerik, metin ve fotoğraf üretimi</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Nasıl ilerliyoruz?</h3>
+        <p>Önce ne istediğinizi dinleriz, ardından kapsama göre net bir teklif veririz. Onayınızdan sonra tasarımı hazırlar, revizyonlarla birlikte teslim ederiz.</p>
+      </div>
+    </div>
+  </div>`;
+}
+
+function pageContact(paket){
+  paket = paket || '';
+  const opts = TIERS.map(t=>t.name).concat(['Henüz bilmiyorum']);
+  const hasWa = String(CONFIG.whatsapp||'').replace(/\D/g,'');
+  const waLink = hasWa ? `<a class="tlink" href="https://wa.me/${hasWa}" target="_blank" rel="noopener">WhatsApp'tan yazın</a>` : '';
+  const mailLink = CONFIG.email ? `<a class="tlink" href="mailto:${esc(CONFIG.email)}">E-posta gönderin</a>` : '';
+  return `
+  <div class="wrap">
+    <div class="page-head">
+      <h1>İletişim</h1>
+      <p>Ne yapmak istediğinizi kısaca yazın. Kapsama göre net bir teklifle dönelim.</p>
+      <div class="social-row">${socialPill('Instagram', igHandle, 'https://instagram.com/')}${socialPill('X', xHandle, 'https://x.com/')}</div>
+    </div>
+    <div class="contact${(waLink || mailLink) ? '' : ' solo'}">
+      <form id="quote-form" novalidate>
+        <div class="field"><label for="q-handle">Instagram veya X kullanıcı adınız</label><input id="q-handle" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="@kullaniciadi"></div>
+        <div class="field"><label for="q-pkg">Hangi paket?</label>
+          <select id="q-pkg">${opts.map(o=>`<option value="${esc(o)}"${o===paket?' selected':''}>${esc(o)}</option>`).join('')}</select>
+        </div>
+        <div class="field"><label for="q-msg">Projenizi kısaca anlatın</label><textarea id="q-msg" placeholder="Nasıl bir site istiyorsunuz? Örnek gösterebileceğiniz siteler var mı?"></textarea></div>
+        <button class="btn btn-egg" type="submit">Teklif al</button>
+      </form>
+      ${(waLink || mailLink) ? `<aside class="contact-side">
+        <h2>Nasıl ulaşırsınız?</h2>
+        <p>Formu doldurup gönderdiğinizde mesajınız hazır metinle WhatsApp'ta ya da e-postada açılır. Ayrıca doğrudan da yazabilirsiniz.</p>
+        ${waLink}${mailLink}
+      </aside>` : ''}
+    </div>
+  </div>`;
+}
+
+/* ---------- Hakkımızda ---------- */
+function pageAbout(){
+  return `
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Hakkımızda</h1>
+      <p>Webnest, profesyonel tasarımcılardan oluşan bir web tasarım ekibidir.</p>
+    </div>
+    <div class="prose">
+      <h2>Ne yapıyoruz?</h2>
+      <p>Haber, kurumsal, tanıtım, portföy ve daha birçok türde web sitesini baştan sona, size özel tasarlıyoruz. Amacımız, sitenizi ziyaret eden herkesin aradığını kolayca bulduğu, güven veren ve göze hoş gelen bir arayüz kurmak.</p>
+      <h2>Nasıl çalışıyoruz?</h2>
+      <p>Önce ne istediğinizi dinleriz. Kapsama göre net bir teklif veririz. Onayınızdan sonra tasarımı hazırlar, canlı önizleme bağlantısıyla sizinle birlikte şekillendirir ve revizyonlarla teslim ederiz.</p>
+      <h2>Neye önem veriyoruz?</h2>
+      <ul>
+        <li><strong>Sadelik.</strong> Gereksiz süsten kaçınır, içeriği öne çıkarırız.</li>
+        <li><strong>Her ekranda rahat kullanım.</strong> Her site telefondan, tabletten ve bilgisayardan rahat kullanılır.</li>
+        <li><strong>Açık iletişim.</strong> Kapsamı ve fiyatı baştan net konuşuruz.</li>
+      </ul>
+      <p style="margin-top:28px"><a class="tlink" href="/iletisim" data-link="/iletisim">Projenizi anlatın</a></p>
+    </div>
+  </div>`;
+}
+
+/* ---------- Kullanıcı hakları ve gizlilik ---------- */
+function pageRights(){
+  const xText = xHandle ? ` ya da X hesabımız (@${esc(xHandle)})` : '';
+  const mailText = CONFIG.email ? ` E-posta ile de ${esc(CONFIG.email)} adresine yazabilirsiniz.` : '';
+  return `
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Kullanıcı hakları</h1>
+      <p>Bu sayfada sitemizi kullanırken hangi bilgilerinizin işlendiğini ve sahip olduğunuz hakları açıklıyoruz.</p>
+    </div>
+    <div class="prose">
+      <h2>Hangi bilgileri topluyoruz?</h2>
+      <p>İletişim formunu kullandığınızda yazdığınız Instagram veya X kullanıcı adınızı, seçtiğiniz paketi ve mesajınızı alırız. Bunların dışında sizden kişisel bilgi istemeyiz.</p>
+      <h2>Bilgilerinizi neden kullanıyoruz?</h2>
+      <p>Yalnızca sizinle iletişime geçmek ve talebinize uygun bir teklif hazırlamak için kullanırız.</p>
+      <h2>Bilgilerinizi paylaşıyor muyuz?</h2>
+      <p>Bilgilerinizi satmayız ve reklam amacıyla üçüncü kişilerle paylaşmayız. Formdan gelen mesajlar, sitemizin altyapısını sağlayan hizmet sağlayıcılarda saklanabilir.</p>
+      <h2>Çerezler ve dış hizmetler</h2>
+      <p>Sitede reklam ya da takip amaçlı çerez kullanmıyoruz. Sayfalarımızdaki yazı tipleri Google Fonts üzerinden yüklenir. Bu nedenle ziyaretiniz sırasında bağlantı bilgileriniz (örneğin IP adresiniz) Google sunucularına iletilebilir. Sitemiz Vercel üzerinde barındırılır ve barındırma sağlayıcısı olağan sunucu kayıtlarını tutabilir.</p>
+      <h2>Haklarınız</h2>
+      <p>6698 sayılı Kişisel Verilerin Korunması Kanunu'nun 11. maddesi kapsamında şu haklara sahipsiniz:</p>
+      <ul>
+        <li>Kişisel verinizin işlenip işlenmediğini öğrenme</li>
+        <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+        <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+        <li>Verilerin yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
+        <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li>
+        <li>Kanunun 7. maddesi çerçevesinde silinmesini veya yok edilmesini isteme</li>
+        <li>Düzeltme ve silme işlemlerinin, verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+        <li>İşlenen verilerin yalnızca otomatik sistemlerle analiz edilmesi sonucu aleyhinize bir sonuç çıkmasına itiraz etme</li>
+        <li>Kanuna aykırı işlenmesi nedeniyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+      </ul>
+      <h2>Bize nasıl ulaşırsınız?</h2>
+      <p>Taleplerinizi <a class="tlink" href="/iletisim" data-link="/iletisim">iletişim sayfasındaki form</a>${xText} üzerinden iletebilirsiniz.${mailText} Talebinizi en kısa sürede değerlendirip size dönüş yaparız.</p>
+      <p class="note">Son güncelleme: 20 Eylül 2026</p>
+    </div>
+  </div>`;
+}
+
+/* ---------- Yönlendirme ---------- */
+const TITLES = {'':'Webnest — Web sitesi tasarımı', hakkimizda:'Hakkımızda — Webnest', haklar:'Kullanıcı hakları — Webnest', ornekler:'Örnek tasarımlar — Webnest', fiyatlar:'Fiyatlar — Webnest', iletisim:'İletişim — Webnest'};
+
+const USE_HASH = location.protocol === 'file:';   // dosya olarak açılırsa (önizleme) #'li adres kullanılır
+let pendingPackage = '';                          // "Teklif al" ile seçilen paket, adrese yazılmaz
+
+function currentPath(){
+  if(USE_HASH) return (location.hash.replace(/^#/,'') || '/').split('?')[0];
+  // eski #/sayfa bağlantıları temiz adrese çevrilir
+  if(location.hash.indexOf('#/') === 0){
+    const p = location.hash.slice(1).split('?')[0];
+    try{ history.replaceState(null,'',p); }catch(e){}
+    return p;
+  }
+  return location.pathname;
+}
+function parseRoute(){
+  let route = currentPath().split('/').filter(Boolean)[0] || '';
+  if(route === 'isler') route = 'ornekler';   // eski adres
+  return {route};
+}
+function navigate(path){
+  if(USE_HASH){ location.hash = '#' + path; return; }
+  if(location.pathname === path){ render(); return; }
+  try{ history.pushState(null,'',path); }
+  catch(e){ location.hash = '#' + path; return; }
+  render();
+}
+function fixLinks(root){
+  if(!USE_HASH) return;
+  root.querySelectorAll('a[data-link]').forEach(a=>a.setAttribute('href','#'+a.dataset.link));
+}
+document.addEventListener('click', e=>{
+  const soon = e.target.closest ? e.target.closest('[data-soon]') : null;
+  if(soon){ toast(soon.dataset.soon + ' hesabı yakında eklenecek.'); return; }
+  const a = e.target.closest ? e.target.closest('a[data-link]') : null;
+  if(!a) return;
+  if(e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  e.preventDefault();
+  if(a.dataset.paket) pendingPackage = a.dataset.paket;
+  navigate(a.dataset.link);
+});
+
+function render(){
+  const {route} = parseRoute();
+  const app = $('app');
+  let html;
+  if(route==='ornekler') html = pageWorks();
+  else if(route==='fiyatlar') html = pagePrices();
+  else if(route==='iletisim') html = pageContact(pendingPackage);
+  else if(route==='hakkimizda') html = pageAbout();
+  else if(route==='haklar') html = pageRights();
+  else html = pageHome();
+  app.innerHTML = html;
+  if(route==='iletisim') pendingPackage = '';
+  fixLinks(document);
+  document.title = TITLES[route] || TITLES[''];
+  document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active', a.dataset.route===route));
+  window.scrollTo({top:0, behavior:'auto'});
+  fitFrames();
+
+  const form = $('quote-form');
+  if(form){
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      const handle = $('q-handle').value.trim();
+      if(!handle){ toast('Instagram veya X kullanıcı adınızı yazın.'); $('q-handle').focus(); return; }
+      const pkg = $('q-pkg').value;
+      const msg = $('q-msg').value.trim();
+      let text = 'Merhaba, Instagram/X kullanıcı adım: ' + handle + '. ';
+      text += pkg && pkg !== 'Henüz bilmiyorum' ? '"' + pkg + '" paketi için teklif almak istiyorum.' : 'bir proje için teklif almak istiyorum.';
+      if(msg) text += '\n\n' + msg;
+      sendQuote(text);
+    });
+  }
+}
+
+(function(){
+  const ul = $('foot-links');
+  if(!ul) return;
+  if(igHandle) ul.insertAdjacentHTML('beforeend', `<li><a href="https://instagram.com/${encodeURIComponent(igHandle)}" target="_blank" rel="noopener">Instagram</a></li>`);
+  if(xHandle) ul.insertAdjacentHTML('beforeend', `<li><a href="https://x.com/${encodeURIComponent(xHandle)}" target="_blank" rel="noopener">X</a></li>`);
+})();
+
+$('year').textContent = new Date().getFullYear();
+window.addEventListener('popstate', render);
+if(USE_HASH) window.addEventListener('hashchange', render);
+render();
+</script>
+</body>
+</html>
