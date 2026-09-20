@@ -187,8 +187,8 @@ form .btn:disabled{opacity:.6;cursor:default;}
 .prose strong{color:var(--ink);}
 .prose .note{font-size:13px;color:var(--ink-3);margin-top:34px;}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
-.sent h2{font-family:var(--font-display);font-weight:700;font-size:32px;line-height:1.1;letter-spacing:-0.01em;margin:0 0 12px;}
-.sent p{color:var(--ink-2);margin:0;max-width:52ch;line-height:1.7;}
+.notice{margin-top:16px;padding:14px 16px;border-radius:10px;font-size:15px;line-height:1.6;color:var(--ink);border:1px solid var(--egg);background:rgba(134,211,200,.14);background:color-mix(in srgb, var(--egg) 14%, transparent);}
+.notice.err{border-color:#D9846B;background:rgba(217,132,107,.14);background:color-mix(in srgb, #D9846B 14%, transparent);}
 .social-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
 .pill{display:inline-flex;align-items:center;padding:10px 22px;border-radius:999px;border:1.5px solid var(--egg);background:transparent;color:var(--egg);font-weight:700;font-size:15px;}
 .pill:hover{background:var(--egg);color:var(--egg-ink);}
@@ -559,6 +559,7 @@ function pageContact(paket){
         <div class="field"><label for="q-msg">Projenizi kısaca anlatın</label><textarea id="q-msg" placeholder="Nasıl bir site istiyorsunuz? Örnek gösterebileceğiniz siteler var mı?"></textarea></div>
         <div class="hp" aria-hidden="true"><label>Web sitesi <input id="q-website" type="text" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn btn-egg" type="submit" id="q-submit">Teklif al</button>
+        <div class="notice" id="q-notice" role="status" aria-live="polite" hidden></div>
       </form>
       ${(waLink || mailLink) ? `<aside class="contact-side">
         <h2>Nasıl ulaşırsınız?</h2>
@@ -695,25 +696,31 @@ function render(){
 
   const form = $('quote-form');
   if(form){
+    const notice = $('q-notice');
+    const showNotice = (kind, html)=>{
+      notice.className = 'notice' + (kind === 'err' ? ' err' : '');
+      notice.innerHTML = html;
+      notice.hidden = false;
+      if(notice.scrollIntoView) notice.scrollIntoView({block:'nearest', behavior:'smooth'});
+    };
+    const okHTML = '<strong>Mesajınız alındı.</strong> Size uygun bir görüşme zamanı belirlemek için en kısa sürede, yazdığınız X veya Instagram hesabından sizinle iletişime geçeceğiz.';
+
     form.addEventListener('submit', async e=>{
       e.preventDefault();
       const handle = $('q-handle').value.trim();
-      if(!handle){ toast('Instagram veya X kullanıcı adınızı yazın.'); $('q-handle').focus(); return; }
+      if(!handle){
+        showNotice('err', 'Instagram veya X kullanıcı adınızı yazın.');
+        $('q-handle').focus();
+        return;
+      }
       const pkg = $('q-pkg').value;
       const msg = $('q-msg').value.trim();
       const btn = $('q-submit');
 
-      const showSent = ()=>{
-        const box = document.createElement('div');
-        box.className = 'sent';
-        box.setAttribute('role','status');
-        box.innerHTML = '<h2>Mesajınız alındı.</h2><p>Size uygun bir görüşme zamanı belirlemek için en kısa sürede, yazdığınız X veya Instagram hesabından sizinle iletişime geçeceğiz.</p>';
-        form.replaceWith(box);
-      };
-
       // Gizli alanı bir bot doldurduysa gönderme, ama başarılıymış gibi davran
-      if($('q-website').value){ showSent(); return; }
+      if($('q-website').value){ form.reset(); showNotice('ok', okHTML); return; }
 
+      notice.hidden = true;
       btn.disabled = true;
       btn.textContent = 'Gönderiliyor';
       try{
@@ -722,12 +729,15 @@ function render(){
           paket: pkg ? pkg.slice(0,60) : null,
           mesaj: msg ? msg.slice(0,2000) : null
         });
-        showSent();
+        form.reset();                       // yazılanlar sıfırlanır
+        btn.textContent = 'Teklif al';
+        showNotice('ok', okHTML);
+        setTimeout(()=>{ btn.disabled = false; }, 8000);   // üst üste gönderimi önler
       }catch(err){
         console.error(err);
         btn.disabled = false;
         btn.textContent = 'Teklif al';
-        toast('Gönderilemedi. Lütfen biraz sonra tekrar deneyin.');
+        showNotice('err', 'Gönderilemedi. Lütfen biraz sonra tekrar deneyin.');
       }
     });
   }
